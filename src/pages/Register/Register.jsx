@@ -43,33 +43,24 @@ const Register = () => {
   return (
     <AuthLayout title="Create Account" subtitle="Join us and start exploring events">
       <form onSubmit={handleSubmit} className="flex flex-col gap-4">
-        <Input label="Full Name" name="fullName" placeholder="John Doe"
-          value={form.fullName} onChange={handleChange} error={errors.fullName} />
-        <Input label="Username (optional)" name="username" placeholder="johndoe"
-          value={form.username} onChange={handleChange} />
-        <Input label="Email" name="email" type="email" placeholder="john@example.com"
-          value={form.email} onChange={handleChange} error={errors.email} />
-        <PasswordInput label="Password" name="password" placeholder="Min. 8 characters"
-          value={form.password} onChange={handleChange} error={errors.password} />
-        <PasswordInput label="Confirm Password" name="confirmPassword" placeholder="Repeat your password"
-          value={form.confirmPassword} onChange={handleChange} error={errors.confirmPassword} />
-
+        <Input label="Full Name" name="fullName" placeholder="John Doe" value={form.fullName} onChange={handleChange} error={errors.fullName} />
+        <Input label="Username (optional)" name="username" placeholder="johndoe" value={form.username} onChange={handleChange} />
+        <Input label="Email" name="email" type="email" placeholder="john@example.com" value={form.email} onChange={handleChange} error={errors.email} />
+        <PasswordInput label="Password" name="password" placeholder="Min. 8 characters" value={form.password} onChange={handleChange} error={errors.password} />
+        <PasswordInput label="Confirm Password" name="confirmPassword" placeholder="Repeat your password" value={form.confirmPassword} onChange={handleChange} error={errors.confirmPassword} />
         <div className="flex flex-col gap-1">
           <label className="text-sm font-medium text-gray-700">Role</label>
           <div className="flex gap-6">
             {["attendee", "organizer"].map((r) => (
               <label key={r} className="flex items-center gap-2 cursor-pointer text-sm text-gray-700 capitalize">
-                <input type="radio" name="role" value={r} checked={form.role === r}
-                  onChange={handleChange} className="accent-purple-600" />
+                <input type="radio" name="role" value={r} checked={form.role === r} onChange={handleChange} className="accent-purple-600" />
                 {r}
               </label>
             ))}
           </div>
         </div>
-
         <Button type="submit" loading={loading} className="mt-2">Create Account</Button>
       </form>
-
       <p className="text-center text-sm text-gray-500 mt-5">
         Already have an account?{" "}
         <Link to="/login" className="text-purple-600 font-medium hover:underline">Login</Link>

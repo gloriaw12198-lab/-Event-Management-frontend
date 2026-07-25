@@ -10,7 +10,6 @@ const FAQS = [
 
 const FAQ = () => {
   const [open, setOpen] = useState(null);
-
   return (
     <section className="bg-gray-50 py-16">
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -18,10 +17,7 @@ const FAQ = () => {
         <div className="flex flex-col gap-3">
           {FAQS.map(({ q, a }, i) => (
             <div key={i} className="bg-white border border-gray-100 rounded-xl overflow-hidden">
-              <button
-                onClick={() => setOpen(open === i ? null : i)}
-                className="w-full flex items-center justify-between px-5 py-4 text-left font-medium text-gray-900 hover:bg-gray-50"
-              >
+              <button onClick={() => setOpen(open === i ? null : i)} className="w-full flex items-center justify-between px-5 py-4 text-left font-medium text-gray-900 hover:bg-gray-50">
                 {q}
                 <HiChevronDown className={`w-5 h-5 text-gray-400 transition-transform ${open === i ? "rotate-180" : ""}`} />
               </button>

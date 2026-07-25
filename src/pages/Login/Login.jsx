@@ -8,7 +8,7 @@ import { useAuth } from "../../context/AuthContext";
 
 const Login = () => {
   const navigate = useNavigate();
-  const { login } = useAuth();
+  const { login: _login } = useAuth();
   const [form, setForm] = useState({ email: "", password: "", rememberMe: false });
   const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(false);
@@ -33,30 +33,24 @@ const Login = () => {
     const e_ = validate();
     if (Object.keys(e_).length) return setErrors(e_);
     setLoading(true);
-    // TODO: call login(token) with JWT from Django backend
+    // TODO: call _login(token) with JWT from Django backend
     setTimeout(() => { setLoading(false); navigate("/"); }, 1000);
   };
 
   return (
     <AuthLayout title="Welcome Back" subtitle="Sign in to your account">
       <form onSubmit={handleSubmit} className="flex flex-col gap-4">
-        <Input label="Email" name="email" type="email" placeholder="john@example.com"
-          value={form.email} onChange={handleChange} error={errors.email} />
-        <PasswordInput label="Password" name="password" placeholder="Your password"
-          value={form.password} onChange={handleChange} error={errors.password} />
-
+        <Input label="Email" name="email" type="email" placeholder="john@example.com" value={form.email} onChange={handleChange} error={errors.email} />
+        <PasswordInput label="Password" name="password" placeholder="Your password" value={form.password} onChange={handleChange} error={errors.password} />
         <div className="flex items-center justify-between text-sm">
           <label className="flex items-center gap-2 cursor-pointer text-gray-600">
-            <input type="checkbox" name="rememberMe" checked={form.rememberMe}
-              onChange={handleChange} className="accent-purple-600" />
+            <input type="checkbox" name="rememberMe" checked={form.rememberMe} onChange={handleChange} className="accent-purple-600" />
             Remember me
           </label>
           <Link to="/forgot-password" className="text-purple-600 hover:underline">Forgot Password?</Link>
         </div>
-
         <Button type="submit" loading={loading} className="mt-2">Login</Button>
       </form>
-
       <p className="text-center text-sm text-gray-500 mt-5">
         Don&apos;t have an account?{" "}
         <Link to="/register" className="text-purple-600 font-medium hover:underline">Register</Link>
